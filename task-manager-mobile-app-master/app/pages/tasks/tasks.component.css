@@ -1,0 +1,19 @@
+.form{
+  border-bottom-color: #ddd;
+  border-bottom-width: 7px;
+  padding: 14px;
+  background-color: #eee;
+  color: #964945;
+}
+
+.done-task{
+  text-decoration: line-through;
+}
+
+ActionBar{
+  padding-right: 10px;
+}
+
+ActionBar Label{
+  color: #ccc;
+}
