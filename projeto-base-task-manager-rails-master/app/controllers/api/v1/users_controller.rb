@@ -33,6 +33,7 @@ class Api::V1::UsersController < ApplicationController
    def destroy
     user = User.find_by(id: params[:id])
     user.destroy if user.present?
+    head 204
    end
 
    private
