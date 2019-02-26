@@ -83,13 +83,24 @@ RSpec.describe 'User API', type: :request do
 
        it 'returns the json data for the updated user' do
          user_response = JSON.parse(response.body, symbolize_names: true)
-         expect(user_response[:email])
+         expect(user_response[:email]).to eq(user_params[:email])
        end
 
      end
 
-     context 'when the request params are invalid' do
-     end
+     context 'when the user request params are invalid' do
+      let(:user_params) {  attributes_for(:user, email: 'invalid_email@') }
+
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
+      end
+
+      it 'returns the json data for the errors' do
+        user_response = JSON.parse(response.body, symbolize_names: true)
+        expect(user_response).to have_key(:errors)
+      end
+
+    end
 
    end
 
