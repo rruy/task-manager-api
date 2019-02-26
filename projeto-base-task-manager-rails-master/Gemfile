@@ -38,6 +38,10 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'webrat', '0.7.1'
+  gem 'spork', '0.9.0.rc4'
+  gem 'database_cleaner'
+  gem 'capybara', '~> 2.2.0'
 end
 
 group :development do
