@@ -3,12 +3,17 @@ require 'rails_helper'
 RSpec.describe 'User API', type: :request do
    let!(:user) { create(:user) }
    let(:user_id) { user.id }
+   let(:headers) do
+     { 
+       'Accept' => 'application/vnd.taskmanager.v1',
+       'Content-type' => Mime[:json].to_s
+     } 
+   end
 
    before { host! 'api.taskmanager.test' }
 
    describe 'GET /users/:id' do
      before do  
-        headers = { 'Accept' => 'application/vnd.taskmanager.v1' } 
         get "/users/#{user_id}", {}, headers
      end
 
@@ -35,8 +40,7 @@ RSpec.describe 'User API', type: :request do
     
    describe 'POST /users' do
       before do  
-        headers = { 'Accept' => 'application/vnd.taskmanager.v1' } 
-        post "/users/", params: { user: user_params }, headers: headers
+        post "/users/", params: { user: user_params }.to_json, headers: headers
       end
  
       context 'when the user params are valid' do
@@ -70,8 +74,7 @@ RSpec.describe 'User API', type: :request do
  
    describe 'PUT /users/:id' do
      before do
-       headers = { 'Accept' => 'application/vnd.taskmanager.v1' }
-       put "/users/#{user_id}", params: { user: user_params }, headers: headers
+       put "/users/#{user_id}", params: { user: user_params }.to_json, headers: headers
      end
 
      context 'when the request params are valid' do
@@ -107,7 +110,6 @@ RSpec.describe 'User API', type: :request do
 
   describe 'DELETE /users/:id' do
     before do
-      headers = { 'Accept' => 'application/vnd.taskmanager.v1' }
       delete "/users/#{user_id}", params: { }, headers: headers
     end
 
