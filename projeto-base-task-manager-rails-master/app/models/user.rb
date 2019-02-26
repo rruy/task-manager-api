@@ -8,5 +8,10 @@ class User < ApplicationRecord
   #validates_presence_of :name
 
   validates_uniqueness_of :auth_token
-  
+
+
+  def info  
+    "#{email} - #{created_at}"
+  end
+
 end
