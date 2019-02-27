@@ -9,6 +9,8 @@ class Api::V1::SessionsController < ApplicationController
         user.generate_authentication_token!
         user.save
         render json: user, status: 200
+      else
+        render json: { errors: 'Invalid password or email' }, status: 401
       end
     end
 

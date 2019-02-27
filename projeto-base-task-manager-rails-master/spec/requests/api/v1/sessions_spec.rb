@@ -28,6 +28,19 @@ RSpec.describe 'Session API', type: :request do
           end
        end
 
+       context 'when the credentials are incorrect' do
+        let(:credentials) { { email: user.email, password: "invalid_password" } }
+           
+        it 'returns status code 401' do 
+          expect(response).to have_http_status(401)
+        end
+
+        it 'returns the json data for the errors' do 
+          expect(json_body).to have_key(:errors)
+        end
+
+       end
+
     end
 
 end
