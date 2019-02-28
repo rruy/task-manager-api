@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { build(:user) }
 
-  it { is_expected.to have_many(:tasks) }
+  it { is_expected.to have_many(:tasks).dependent(:destroy) }
 
   it { is_expected.to validate_presence_of(:email) }
   it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
@@ -34,6 +34,5 @@ RSpec.describe User, type: :model do
       expect(user.auth_token).not_to eq(existing_user.auth_token)
     end
   end
-
 
 end
