@@ -6,7 +6,8 @@ RSpec.describe 'User API', type: :request do
    let(:headers) do
      { 
        'Accept' => 'application/vnd.taskmanager.v1',
-       'Content-type' => Mime[:json].to_s
+       'Content-type' => Mime[:json].to_s,
+       'Authorization' => user.auth_token
      } 
    end
 
@@ -14,7 +15,7 @@ RSpec.describe 'User API', type: :request do
 
    describe 'GET /users/:id' do
      before do  
-        get "/users/#{user_id}", {}, headers
+        get "/users/#{user_id}", params: {}, headers: headers
      end
 
      context 'when the user exists' do
@@ -39,11 +40,12 @@ RSpec.describe 'User API', type: :request do
     
    describe 'POST /users' do
       before do  
-        post "/users/", params: { user: user_params }.to_json, headers: headers
+        post "/users", params: { user: user_params }.to_json, headers: headers
       end
  
       context 'when the user params are valid' do
-        let(:user_params) { attributes_for(:user, email: 'rr@email.com.br' ) }
+        let(:user) { create(:user) }
+        let(:user_params) { attributes_for(:user) }
 
         it 'returns status code 201' do 
           expect(response).to have_http_status(201)

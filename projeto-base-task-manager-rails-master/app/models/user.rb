@@ -8,7 +8,7 @@ class User < ApplicationRecord
   #validates_presence_of :name
 
   validates_uniqueness_of :auth_token
-
+  before_create :generate_authentication_token!
 
   def info  
     "#{email} - #{created_at} - Token: #{Devise.friendly_token}"
