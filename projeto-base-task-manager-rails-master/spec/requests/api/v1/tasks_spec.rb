@@ -113,6 +113,23 @@ RSpec.describe 'Task API', type: :request do
 
       end
 
+      context 'when the params are invalid' do
+        let(:task_params) { { title: " " } }
+
+        it 'returns status code 422' do
+          expect(response).to have_http_status(422)
+        end
+
+        it 'returns the json errors for title' do
+          expect(json_body[:errors]).to have_key(:title)
+        end
+
+        it 'does not update the task in the database' do
+          expect( Task.find_by(title: task_params[:title])).to be_nil
+        end
+
+      end
+
 
     end
 

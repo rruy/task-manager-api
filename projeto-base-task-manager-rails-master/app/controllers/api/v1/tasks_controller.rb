@@ -24,9 +24,11 @@ class Api::V1::TasksController < ApplicationController
     def update
       task = current_user.tasks.find(params[:id])
 
-      task.update_attributes(task_params)
-      
-      render json: task, status: 200
+      if task.update_attributes(task_params)
+        render json: task, status: 200
+      else
+        render json: { errors: task.errors }, status: 422
+      end
     end
 
     private
