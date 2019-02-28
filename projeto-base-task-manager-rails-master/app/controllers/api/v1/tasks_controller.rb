@@ -14,9 +14,11 @@ class Api::V1::TasksController < ApplicationController
     def create
       task = current_user.tasks.build(task_params)
       
-      task.save
-
-      render json: task, status: 201
+      if task.save
+        render json: task, status: 201
+      else
+        render json: { errors: task.errors }, status: 422
+      end
     end
 
     private
