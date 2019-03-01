@@ -49,6 +49,4 @@ test:
 #
 production:
   <<: *default
-  database: task-manager-api_production
-  username: task-manager-api
-  password: <%= ENV['TASK-MANAGER-API_DATABASE_PASSWORD'] %>
+  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
