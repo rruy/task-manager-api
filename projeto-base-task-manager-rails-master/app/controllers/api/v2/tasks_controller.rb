@@ -1,10 +1,9 @@
-class Api::V1::TasksController < ApplicationController
+class Api::V2::TasksController < ApplicationController
     before_action :authenticate_with_token!
 
     def index
-      binding.pry
       tasks = current_user.tasks 
-      render json: { tasks: tasks }, status: 200
+      render json: tasks, status: 200
     end
 
     def show
