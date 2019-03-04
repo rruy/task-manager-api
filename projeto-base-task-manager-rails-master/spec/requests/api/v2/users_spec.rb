@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'User API', type: :request do
    let!(:user) { create(:user) }
-   let(:user_id) { user.id }
    let(:auth_data) { user.create_new_auth_token }
    let(:headers) do
      { 
@@ -25,7 +24,7 @@ RSpec.describe 'User API', type: :request do
       end
 
        it 'returns the users' do
-         expect(json_body[:data][:id].to_i).to eq(user_id)
+         expect(json_body[:data][:id].to_i).to eq(user.id)
        end
 
        it 'returns status 200' do
