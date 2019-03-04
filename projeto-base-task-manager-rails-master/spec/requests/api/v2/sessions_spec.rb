@@ -48,4 +48,25 @@ RSpec.describe 'Session API', type: :request do
 
     end
 
+
+    describe 'POST /auth/sign_out' do
+      before do
+        delete '/auth/sign_out', params: {}, headers: headers   
+      end 
+
+      context 'when the credentials are correct' do
+          
+         it 'returns status code 200' do 
+           expect(response).to have_http_status(200)
+         end
+
+         it 'change the user auth token' do 
+          user.reload 
+          expect(user.valid_token?(auth_data['token'], auth_data['client'])).to eq(false)
+         end
+      end
+
+
+   end
+
 end
