@@ -7,7 +7,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.7'
 # Use Puma as the app server
@@ -52,17 +51,18 @@ group :production do
   gem 'pg'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'devise', '4.3.0'
+  # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'active_model_serializers', '0.10.6'
+  gem 'devise', '4.3.0'
 
-gem 'ransack', '1.8.2'
+  gem 'active_model_serializers', '0.10.6'
 
-gem 'omniauth', '1.6.1'
+  gem 'ransack', '1.8.2'
 
-gem 'devise_token_auth', '0.1.42'
+  gem 'omniauth', '1.6.1'
 
-gem 'rails-i18n', '5.0.4'
+  gem 'devise_token_auth', '0.1.42'
+
+  gem 'rails-i18n', '5.0.4'
