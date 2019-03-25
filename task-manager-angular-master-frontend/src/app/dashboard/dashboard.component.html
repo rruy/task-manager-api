@@ -1,18 +1,32 @@
-<h1 class="page-header">Painel de Controle</h1>
+<br/>
+<section class="mb-5 text-center">
+  <h4 class="mb-5">
+    <span class="font-weight-bold">Lista de Tarefas</span>
+  </h4>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Tarefa</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let task of tasks">
-      <td>{{task.title}}</td>
-      <td>
-        <a [routerLink]="['/tasks', task.id]" class="btn btn-info">Detalhes</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<!--Table-->
+<table class="table table-sm table-striped text-center">
+    <!--Table head-->
+    <thead class="mdb-color darken-3">
+      <tr class="text-white">
+          <th class="text-center" scope="col">Tarefa</th>
+          <th class="text-center" scope="col"></th>
+      </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+        <tr *ngFor="let task of tasks">
+            <td>{{task.title}}</td>
+            <td class="pull-right">
+              <a [routerLink]="['/tasks', task.id]" class="btn btn-info btn-sm">Detalhes</a>
+            </td>
+          </tr>
+    </tbody>
+    <!--Table body-->
+  </table>
+  <!--Table-->
+
+</section>
+

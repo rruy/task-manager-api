@@ -1,8 +1,13 @@
 // angular imports
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+//import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
+
 
 // components imports
 import { AppComponent } from './app.component';
@@ -43,12 +48,14 @@ window['datetimepicker'] = window['datetimepicker'] = datetimepicker;
     TaskDetailComponent
   ],
   imports: [
+    MDBBootstrapModule.forRoot(),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     AppRoutingModule
   ],
+  schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     AuthGuard,
     AuthService,

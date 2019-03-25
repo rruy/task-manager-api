@@ -1,11 +1,16 @@
-<h1 class="page-header">Detalhes da Tarefa: {{ task.title }}</h1>
+<br/>
+<section class="mb-5 text-left">
+  <h4 class="mb-5">
+    <span class="font-weight-bold">Detalhes da Tarefa:</span> 
+  </h4>
+
 
 <form [formGroup]="form" (ngSubmit)="updateTask()">
   <div class="row">
     <!-- taskTitle -->
     <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('title')">
       <label for="title" class="control-label">Título</label>
-      <input type="text" formControlName="title" id="title" class="form-control">
+      <input type="text" formControlName="title" id="title" class="form-control shadow-textarea">
       <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('title')"></span>
             
       <div *ngIf="formUtils.showFieldError('title')" class="text-danger">
@@ -16,7 +21,7 @@
     </div>
   
     <!-- taskDeadline -->
-    <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('deadline')">
+    <div class="form-group col-md-3 has-feedback shadow-textarea" [ngClass]="formUtils.fieldClassForErrorOrSuccess('deadline')">
       <label for="deadline" class="control-label">Prazo de Entrega</label>
       <input type="text" formControlName="deadline" id="deadline" class="form-control">
       <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('deadline')"></span>
@@ -24,7 +29,7 @@
     </div>
 
     <!-- taskDone -->
-    <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('done')">
+    <div class="form-group shadow-textarea col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('done')">
       <label for="done" class="control-label">Situação</label>
       <select class="form-control" id="done" formControlName="done">
         <option *ngFor="let option of taskDoneOptions" [value]="option.value">{{ option.text }}</option>
@@ -47,3 +52,5 @@
 
   <pre>{{ form.value | json }}</pre>
 </form>
+
+</section>
